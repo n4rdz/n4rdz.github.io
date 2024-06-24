@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+}
+
+.background img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    min-width: 50%;
+    min-height: 50%;
+    filter: blur(15px);
+    -webkit-filter: blur(50px);
+    transform: scale(1.1);
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+    
+    text-align: center;
+}
+
+.container:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.player-img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 1rem;
+}
+
+.player-img img {
+    object-fit: cover;
+    border-radius: 20px;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+}
+
+.player-img:hover img {
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.8);
+}
+
+.player-img img.active {
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.player-progress {
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+    height: 6px;
+    width: 90%;
+    position: relative;
+}
+
+.progress {
+    background-color: #212121;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.music-duration {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.fa-solid {
+    font-size: 30px;
+    color: #666;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.fa-solid:hover {
+    filter: brightness(40%);
+}
+
+.play-button {
+    font-size: 44px;
+}
+
+@media (max-width: 992px) {
+    .player-controls {
+        gap: 1rem;
+    }
+    .fa-solid {
+        font-size: 24px;
+    }
+    .play-button {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 600px) {
+    .player-controls {
+        gap: 1rem;
+    }
+    .fa-solid {
+        font-size: 20px;
+    }
+    .play-button {
+        font-size: 30px;
+    }
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(5, 5, 5);
+    font-size: 1rem;
+}
+
+a:hover {
+    color: rgb(8, 8, 8);
+}
+
+/* HEADER */
+header {
+    position: relative;
+    padding: 0;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    padding: 0 1rem;
+}
+
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-left: 1.5rem;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 2rem;
+    font-weight: bold;
+}
+
+.navbar .toggle_btn {
+    color: rgb(5, 5, 5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    padding-right: 2rem;
+}
+
+
+
+.action_btn:hover {
+    scale: 1.05;
+    color: rgb(3, 3, 3);
+    border-bottom: 2px solid black;
+}
+
+.action_btn:active {
+    scale: 0.95;
+}
+
+.dropdown_menu {
+    display: none;
+    position: absolute;
+   
+    top: 60px;
+    width: 300px;
+    
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.dropdown_menu.open {
+    display: flex;
+    height: auto;
+}
+
+.dropdown_menu li {
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+    .navbar .links,
+    .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn {
+        display: block;
+    }
+
+    .dropdown_menu li {
+        border-top: 1px solid #ddd;
+    }
+
+    .dropdown_menu li:first-child {
+        border-top: none;
+    }
+}
