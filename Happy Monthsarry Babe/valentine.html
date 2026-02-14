@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephanie & Andrey ❤️</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+
+/* ============================= BASE ============================= */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:"Poppins",sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* ============================= LAYOUT ============================= */
+section{
+  padding:60px 20px;
+}
+
+h1,h2{
+  font-family:"Dancing Script",cursive;
+}
+
+/* ============================= LANDING ============================= */
+#landing{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+#landing h1{
+  font-size:3rem;
+}
+
+#landing p{
+  max-width:600px;
+  font-size:1.1rem;
+}
+
+/* ============================= BUTTONS ============================= */
+.btn{
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  font-size:1rem;
+  cursor:pointer;
+  margin:10px;
+  transition:0.3s;
+}
+
+#yesBtn{
+  background:white;
+  color:#ff4d6d;
+  font-weight:bold;
+}
+
+#yesBtn:hover{
+  transform:scale(1.1);
+}
+
+#noBtn{
+  background:transparent;
+  border:2px solid white;
+  color:white;
+  position:relative;
+}
+
+/* ============================= LETTER ============================= */
+#letter{
+  background:rgba(255,255,255,0.2);
+  max-width:700px;
+  margin:auto;
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  font-size:1rem;
+}
+
+/* ============================= GALLERY ============================= */
+#gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:15px;
+  max-width:900px;
+  margin:auto;
+}
+
+#gallery img{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:15px;
+  transition:0.3s;
+  cursor:pointer;
+}
+
+#gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* ============================= MUSIC BUTTON ============================= */
+#musicBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:none;
+  font-size:20px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+  z-index:1000;
+}
+
+/* ============================= FLOATING HEARTS ============================= */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:float 6s linear infinite;
+  opacity:0.8;
+}
+
+@keyframes float{
+  to{
+    transform:translateY(-120vh);
+  }
+}
+
+/* ============================= CINEMATIC OVERLAY ============================= */
+#overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(255,154,158,0.97);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  transition:1s;
+}
+
+#overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+#overlay h1{
+  font-size:3rem;
+  margin-bottom:20px;
+}
+
+#overlay p{
+  max-width:600px;
+  font-size:1.2rem;
+}
+
+/* ============================= GLOW ============================= */
+@keyframes glow{
+  from{
+    box-shadow:inset 0 0 50px rgba(255,255,255,0.3);
+  }
+  to{
+    box-shadow:inset 0 0 150px rgba(255,255,255,0.8);
+  }
+}
+
+.glow{
+  animation:glow 1s infinite alternate;
+}
+
+/* ============================= BIG HEARTS ============================= */
+.big-heart{
+  position:fixed;
+  font-size:35px;
+  pointer-events:none;
+  animation:explode 2s ease-out forwards;
+}
+
+@keyframes explode{
+  from{
+    transform:scale(0);
+    opacity:1;
+  }
+  to{
+    transform:scale(2) translateY(-300px);
+    opacity:0;
+  }
+}
+
+/* ============================= MOBILE ============================= */
+@media(max-width:600px){
+  #landing h1{
+    font-size:2.3rem;
+  }
+
+  #overlay h1{
+    font-size:2.2rem;
+  }
+
+  #gallery img{
+    width:100px;
+    height:100px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn">🎵</button>
+
+<!-- CINEMATIC OVERLAY -->
+<div id="overlay">
+  <h1>I Love You, Stephanie ❤️</h1>
+  <p>
+    Thank you for choosing me.<br>
+    Thank you for saying yes to me.<br>
+    You are my forever Valentine.<br><br>
+    — Andrey
+  </p>
+</div>
+
+<!-- LANDING -->
+<section id="landing">
+  <h1>Will You Be My Valentine? ❤️</h1>
+  <p>
+    Hi <b>Stephanie</b>,<br>
+    Every moment with you feels like magic.
+  </p>
+  <div>
+    <button class="btn" id="yesBtn">Yes 💖</button>
+    <button class="btn" id="noBtn">No 💔</button>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section>
+<h2>My Love Letter 💌</h2>
+<div id="letter">
+<p>
+Babe, My Wife and My Girlfriend <br><br>
+
+From the moment you said yes to me while I was still pursuing you,
+I knew my heart had found its home.
+
+In just four months, you have given my life so much color,
+happiness, and meaning that I never imagined was possible.
+
+Your smile is my favorite sight.
+Your voice is my favorite sound.
+And your love is my greatest blessing.
+
+Thank you for believing in me,
+for choosing me,
+and for loving me the way you do.
+
+Every day with you feels like a gift,
+and I promise to cherish you,
+support you,
+and choose you always.
+
+This February 18 marks our four months together,
+and I’m grateful for every second with you.
+
+No matter where life takes us,
+I want it to be with you.
+
+Will you always be my Valentine?
+
+<br><br>
+Forever yours,<br>
+<b>Andrey❤️</b>
+</p>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section>
+<h2>Our Memories 📸</h2>
+<div id="gallery">
+  <!-- MANUAL IMAGE INSERTION -->
+  <img src="img/pic (1).jpg" alt="Memory 1">
+  <img src="img/pic (11).jpg" alt="Memory 2">
+  <img src="img/pic (16).jpg" alt="Memory 3">
+  <img src="img/pic (23).jpg" alt="Memory 4">
+  <!-- Add more images manually here -->
+</div>
+</section>
+
+<!-- SCRIPT -->
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const overlay = document.getElementById("overlay");
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+let playing = false;
+
+/* YES CLICK */
+yesBtn.addEventListener("click", () => {
+  overlay.classList.add("active");
+  document.body.classList.add("glow");
+
+  music.play();
+  playing = true;
+  musicBtn.textContent = "🔊";
+
+  for (let i = 0; i < 40; i++) createBigHeart();
+  startLoveRain();
+});
+
+/* NO BUTTON RUN */
+noBtn.addEventListener("mouseover", () => {
+  const padding = 20;
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding*2) + padding;
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding*2) + padding;
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
+
+/* MUSIC TOGGLE */
+musicBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.textContent = "🔊";
+  } else {
+    music.pause();
+    musicBtn.textContent = "🎵";
+  }
+});
+
+/* FLOATING HEARTS */
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = Math.random()*20 + 15 + "px";
+  heart.style.animationDuration = Math.random()*3 + 4 + "s";
+
+  document.body.appendChild(heart);
+  setTimeout(()=> heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+/* BIG HEARTS */
+function createBigHeart(){
+  const heart = document.createElement("div");
+  heart.className = "big-heart";
+  heart.innerHTML = "💖";
+
+  heart.style.left = "50%";
+  heart.style.top = "50%";
+  heart.style.transform = `translate(-50%,-50%) rotate(${Math.random()*360}deg)`;
+
+  document.body.appendChild(heart);
+  setTimeout(()=> heart.remove(), 2000);
+}
+
+/* LOVE RAIN */
+function startLoveRain(){
+  let count = 0;
+  const rain = setInterval(() => {
+    createHeart();
+    count++;
+    if(count > 60) clearInterval(rain);
+  }, 100);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Stephanie 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ========== RESET ========== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ========== BODY ========== */
+body{
+    background:linear-gradient(135deg,#ff9ad5,#ff4d88);
+    min-height:100vh;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* ========== FLOATING HEARTS ========== */
+.heart{
+    position:fixed;
+    width:20px;
+    height:20px;
+    background:#ff0055;
+    transform:rotate(45deg);
+    animation:float 8s linear infinite;
+    opacity:0.7;
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:#ff0055;
+    border-radius:50%;
+}
+
+.heart:before{top:-10px;}
+.heart:after{left:-10px;}
+
+@keyframes float{
+    0%{bottom:-50px;opacity:1;}
+    100%{bottom:110%;opacity:0;}
+}
+
+/* ========== CONTAINER ========== */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* ========== HEADER ========== */
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    margin-bottom:25px;
+}
+
+/* ========== LETTER ========== */
+.letter{
+    background:rgba(255,255,255,0.15);
+    padding:25px;
+    border-radius:15px;
+    margin:30px 0;
+}
+
+/* ========== GALLERY ========== */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+    gap:10px;
+    margin:30px 0;
+}
+
+.gallery img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.1);
+}
+
+/* ========== BUTTONS ========== */
+.buttons{
+    position:relative;
+    margin:25px 0;
+}
+
+button{
+    padding:12px 28px;
+    border:none;
+    border-radius:25px;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#ff0055;
+    color:white;
+}
+
+#yesBtn:hover{
+    transform:scale(1.1);
+}
+
+#noBtn{
+    background:white;
+    color:#ff0055;
+    position:absolute;
+}
+
+/* ========== MUSIC ========== */
+.music-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:white;
+    color:#ff0055;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+}
+
+/* ========== CELEBRATION ========== */
+#celebration{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    z-index:999;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+#celebration h2{
+    font-family:'Pacifico',cursive;
+    font-size:3rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media(max-width:600px){
+    h1{font-size:2.2rem;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+
+<div class="container">
+
+<h1>Will You Be My Valentine? ❤️</h1>
+
+<p class="subtitle">For my love, Stephanie 💖</p>
+
+
+<!-- LETTER -->
+<div class="letter">
+
+<h3>My Love Letter 💌</h3>
+
+<p>
+Hi my love Stephanie,<br><br>
+
+4 months together this February 18, and every moment with you
+has been the happiest part of my life.<br><br>
+
+I’ll never forget the day you said yes to me while I was still pursuing you.
+That moment made me the luckiest guy alive.<br><br>
+
+Thank you for choosing me, loving me, and believing in us.
+I promise to love you more every single day.<br><br>
+
+Forever yours,<br>
+<b>— Andrey 💕</b>
+</p>
+
+</div>
+
+
+<!-- GALLERY -->
+<h3>Our Memories 📸</h3>
+
+<div class="gallery" id="gallery"></div>
+
+
+
+<!-- QUESTION -->
+<h2>Will you be my Valentine? 💘</h2>
+
+<div class="buttons">
+
+<button id="yesBtn" onclick="yesClicked()">Yes 💖</button>
+<button id="noBtn" onmouseover="moveNo()">No 😅</button>
+
+</div>
+
+</div>
+
+
+<!-- CELEBRATION -->
+<div id="celebration">
+
+<h2>I Love You So Much 💕</h2>
+<p>You just made me the happiest man alive 🥹❤️</p>
+
+</div>
+
+
+<script>
+
+/* HEARTS */
+function createHeart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=4+Math.random()*6+"s";
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(),9000);
+}
+setInterval(createHeart,400);
+
+
+/* MUSIC */
+let playing=false;
+const music=document.getElementById("music");
+
+function toggleMusic(){
+    if(!playing){
+        music.play();
+        playing=true;
+    }else{
+        music.pause();
+        playing=false;
+    }
+}
+
+
+/* NO BUTTON */
+function moveNo(){
+    const btn=document.getElementById("noBtn");
+
+    btn.style.left=Math.random()*(window.innerWidth-100)+"px";
+    btn.style.top=Math.random()*(window.innerHeight-50)+"px";
+}
+
+
+/* YES EFFECT */
+function yesClicked(){
+
+    const cel=document.getElementById("celebration");
+    cel.style.display="flex";
+
+    music.play();
+    playing=true;
+
+}
+/* LOAD GALLERY IMAGES */
+
+const gallery = document.getElementById("gallery");
+
+for(let i = 1; i <= 36; i++){
+
+    const img = document.createElement("img");
+
+    // NO SPACE HERE 👇
+    img.src = `img/pic(${i}).jpg`;
+
+    img.alt = `Memory ${i}`;
+
+    gallery.appendChild(img);
+}
+
+
+</script>
+
+</body>
+</html>
